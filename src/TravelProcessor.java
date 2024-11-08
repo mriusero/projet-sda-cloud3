@@ -17,7 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.*;
 
 @InputRequirement(InputRequirement.Requirement.INPUT_REQUIRED)
-@Tags({"custom", "ayrault", "TravelProcessor", "json"})
+@Tags({"custom", "mriusero", "TravelProcessor", "json"})
 @CapabilityDescription("TravelProcessor calcule la distance entre un client et un conducteur, et génère le prix du voyage basé sur les données JSON d'entrée.")
 public class TravelProcessor extends AbstractProcessor {
 
@@ -62,7 +62,6 @@ public class TravelProcessor extends AbstractProcessor {
             session.exportTo(flowFile, inputContent);
             String inputData = inputContent.toString();
 
-            // Utilisation de la méthode processJson pour transformer les données
             String resultJson;
             try {
                 resultJson = Travel.processJson(inputData);
@@ -72,11 +71,10 @@ public class TravelProcessor extends AbstractProcessor {
                 return;
             }
 
-            // Écriture du contenu transformé dans le FlowFile
             flowFile = session.write(flowFile,
                     outputStream -> outputStream.write(resultJson.getBytes("UTF-8"))
             );
-            // Transfert du FlowFile vers la relation SUCCESS
+
             session.transfer(flowFile, SUCCESS);
 
         } catch (Exception e) {
