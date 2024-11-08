@@ -23,6 +23,7 @@ This project aims to provide an accurate fare calculation for taxi trips by esti
 
 ## Data Model
 Incoming data is processed in real-time via Kafka, using Python's `KafkaProducer`. This data includes customer requests, driver availability, and location information.
+> Note: Data, including location coordinates (longitude, latitude), is randomly generated, which may result in inconsistent map locations.
 
 ![data_model](overview/images/2_data_model.png)
 
